@@ -8,9 +8,9 @@
 
 abstract class DBAbstractModel {
     private static $db_host = 'localhost';
-    private static $db_user = 'usuario';
-    private static $db_pass = 'contraseña';
-    protected $db_name = 'mydb';
+    private static $db_user = 'root';
+    private static $db_pass = '';
+    protected $db_name = 'Agenda';
     protected $query;
     protected $rows = array();
     private $conn;
@@ -26,8 +26,7 @@ abstract class DBAbstractModel {
 
     # Conectar a la base de datos
     private function open_connection() {
-        $this->conn = new mysqli(self::$db_host, self::$db_user,
-            self::$db_pass, $this->db_name);
+        $this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, $this->db_name);
     }
 
     # Desconectar la base de datos
