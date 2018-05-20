@@ -6,10 +6,20 @@
         <title>ABM de Usuarios: {subtitulo}</title>
         <script src="/PooMVC/site_media/js/jquery-3.0.0.js"></script>
         <script src="/PooMVC/site_media/js/jquery.hotkeys.js"></script>
+        <!-- JavaScript -->
+        <script src="//cdn.jsdelivr.net/alertifyjs/1.10.0/alertify.min.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/alertify.min.css"/>
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/default.min.css"/>
+        <!-- Semantic UI theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/semantic.min.css"/>
+        <!-- Bootstrap theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.10.0/css/themes/bootstrap.min.css"/>
     </head>
     <body>
         <script>
-            $(document).bind('keydown', 'alt+f1', function(){
+            /*$(document).bind('keydown', 'alt+f1', function(){
                 alert("Has pulsado alt+f1");
             });
             $(document).bind('keydown', 'alt+f12', function(){
@@ -17,6 +27,54 @@
             });
             $(document).bind('keydown', 'ctrl+f11', function(){
                 alert("Has pulsado ctrl+f11");
+            });*/
+
+            /*$('.solo-numero').keydown(function (e) {
+                // Permite: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                    // Permite: Ctrl+A
+                    (e.keyCode == 65 && e.ctrlKey === true) ||
+                    // Permite: Ctrl+C
+                    (e.keyCode == 67 && e.ctrlKey === true) ||
+                    // Permite: Ctrl+V
+                    (e.keyCode == 86 && e.ctrlKey === true) ||
+                    // Permite: home, end, left, right
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                    // solo permitir lo que no este dentro de estas condiciones es un return false
+                    return;
+                }
+                // Aseguramos que son numeros
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });*/
+
+            $.fn.VentanaError = function(mensaje){
+                if(!alertify.errorAlert){
+                    alertify.dialog('errorAlert',function factory(){
+                        return{
+                            build:function(){
+                                var errorHeader =   '<span class="fa fa-exclamation-triangle fa-2x" '
+                                    +   'style="vertical-align:middle;color:#e88020;">'
+                                    +   '</span> ¡Aviso!';
+                                this.setHeader(errorHeader);
+                            }
+                        };
+                    },true,'alert');
+                }
+                alertify.errorAlert('<p><h2>' + mensaje + '</h2></p>').set('label', 'cerrar');
+            };
+
+            $(document).ready(function () {
+                var down = {};
+                $(document).keydown(function (e) {
+                    down[e.keyCode] = true;
+                }).keyup(function (e) {
+                    if (down[17] && down[122]) {
+                        $.fn.VentanaError("Pulsaste la combinacion: Ctrl + F11");
+                    }
+                    delete down[e.keyCode];
+                });
             });
         </script>
         <div id="cabecera">
