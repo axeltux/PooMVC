@@ -17,4 +17,3 @@
     const VIEW_GET_USER = 'buscar';
     const VIEW_DELETE_USER = 'borrar';
     const VIEW_EDIT_USER = 'modificar';
-?>

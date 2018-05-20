@@ -63,4 +63,3 @@
         $html = str_replace('{mensaje}', $mensaje, $html);
         print $html;
     }
-?>
