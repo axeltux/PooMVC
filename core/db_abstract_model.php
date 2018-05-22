@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: Alexis Torres
  * Date: 19/05/2018
  * Time: 03:53 PM
